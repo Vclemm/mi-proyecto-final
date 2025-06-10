@@ -4,7 +4,12 @@ from groq import Groq
 st.title("MI CHAT DE IA")
 st.sidebar.title("Configuración de la IA")
 
-nombre_usuario= st.sidebar.text_input("¿Cuál es tu nombre?", value="Usuario")
+nombre= st.text_input("Cuál es tu nombre?")
+if st.button("Enviar"):
+    if nombre:
+        st.write(f'Hola {nombre}, bienvenido a nuestro chatbot!')
+    else:
+        st.write(f'Ingresá tu nombre para continuar')
 
 modelos=[ 'llama3-8b-8192', 'llama3-70b-8192', 'mixtral8x7b-32768']
 modelo_elegido = st.sidebar.selectbox("Selecciona un modelo", modelos)
@@ -18,7 +23,7 @@ def crea_usuario_groq():
 def inicializar_estado():
     if "mensajes" not in st.session_state:
         st.session_state.mensajes = []
-        saludo= f'Hola {nombre_usuario}, ¿en qué puedo ayudarte hoy?'
+        saludo= f'¿en qué puedo ayudarte hoy?'
         actualizar_historial("assistant", saludo, "🤖")
 
 def actualizar_historial(rol, contenido, avatar):
