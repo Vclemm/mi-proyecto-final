@@ -56,7 +56,7 @@ def main():
         st.markdown(respuesta_completa)
         
         actualizar_historial("assiatant", respuesta_completa, "🤖")
-        st.rerun()
+        st.experimental_rerun()
         
 if __name__== "__main__":
     main()
